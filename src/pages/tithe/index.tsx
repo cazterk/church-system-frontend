@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import TitheTable from "src/components/tables/titheTable";
 
 const Tithe = () => {

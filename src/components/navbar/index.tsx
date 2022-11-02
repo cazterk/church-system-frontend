@@ -8,7 +8,7 @@ const NavBar = () => {
       <div className=" sider-menu flex justify-center px-5">
         {NavbarData.map((item, index) => {
           return (
-            <li className=" list-none ">
+            <li className=" list-none " key={index}>
               <IconContext.Provider value={{ size: "30" }}>
                 <Link
                   to={item.path}
