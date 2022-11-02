@@ -1,6 +1,6 @@
 import { Suspense, lazy, ReactComponentElement } from "react";
 import type { RouteObject } from "react-router-dom";
-import SuspenseLoader from "./components/SuspenseLoader";
+import SuspenseLoader from "src/components/SuspenseLoader";
 
 const Loader = (Component: any) => (props: any) =>
   (
@@ -10,12 +10,12 @@ const Loader = (Component: any) => (props: any) =>
   );
 
 // components
-const Layout = Loader(lazy(() => import("./container/Layout")));
+const Layout = Loader(lazy(() => import("src/container/Layout")));
 
 // pages
-const HomePage = Loader(lazy(() => import("./pages/home")));
-const AttendancePage = Loader(lazy(() => import("./pages/attendance")));
-const TithePage = Loader(lazy(() => import("./pages/tithe")));
+const HomePage = Loader(lazy(() => import("src/pages/home")));
+const AttendancePage = Loader(lazy(() => import("src/pages/attendance")));
+const TithePage = Loader(lazy(() => import("src/pages/tithe")));
 
 const routes: RouteObject[] = [
   {

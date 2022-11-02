@@ -4,11 +4,11 @@ import { NavbarData } from "../../components/navbar/navbarData";
 
 const NavBar = () => {
   return (
-    <div className="w-full ">
-      <div className=" sider-menu flex justify-center">
+    <div className="w-full shadow-md ">
+      <div className=" sider-menu flex justify-center px-5">
         {NavbarData.map((item, index) => {
           return (
-            <li className=" list-none">
+            <li className=" list-none ">
               <IconContext.Provider value={{ size: "30" }}>
                 <Link
                   to={item.path}
