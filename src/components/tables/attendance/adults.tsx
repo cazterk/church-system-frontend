@@ -64,7 +64,7 @@ const AdultsTable = () => {
                   {data.map((adults: any, index: any) => (
                     <tr className="border-b" key={index}>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {getMeeting(adults.meetingtype)}
+                        {getMeeting(adults.meetingType)}
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                         {adults.brothers}
