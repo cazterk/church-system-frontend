@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import TitheService from "src/services/titthe.service";
 import React, { useEffect } from "react";
+import SuspenseLoader from "src/components/SuspenseLoader";
 
 const TitheTable = () => {
   const { isLoading, error, data } = useQuery({
@@ -8,12 +9,24 @@ const TitheTable = () => {
     queryFn: TitheService.getAllTithe,
   });
 
-  if (isLoading) return "Loading...";
-  if (error) return "An error has occurred: " + error;
+  if (isLoading)
+    return (
+      <div>
+        {" "}
+        <SuspenseLoader />
+      </div>
+    );
+  if (error)
+    return (
+      <div className="text-center ">
+        {" "}
+        An error has occurred: {error.message}
+      </div>
+    );
 
   return (
     <React.Fragment>
-      <div className="flex flex-col ">
+      <div className="flex flex-col  ">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div className="overflow-hidden">

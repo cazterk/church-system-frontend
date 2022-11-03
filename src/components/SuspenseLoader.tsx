@@ -10,13 +10,13 @@ const SuspenseLoader = () => {
     };
   }, []);
 
-  let circleCommonClasses = "h-2.5 w-2.5 bg-blue rounded-full";
+  let circleCommonClasses = "h-3 w-3 bg-black rounded-full";
 
   return (
-    <div className="flex">
-      <div className={`${circleCommonClasses} mr-1`}></div>
-      <div className={`${circleCommonClasses} mr-1`}></div>
-      <div className={`${circleCommonClasses}`}></div>
+    <div className="flex justify-center m-6">
+      <div className={`${circleCommonClasses} mr-1 animate-bounce`}></div>
+      <div className={`${circleCommonClasses} mr-1 animate-bounce200`}></div>
+      <div className={`${circleCommonClasses} animate-bounce400`}></div>
     </div>
   );
 };
