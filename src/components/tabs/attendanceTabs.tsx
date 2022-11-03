@@ -18,8 +18,9 @@ const AttendanceTabs = () => {
     <div className=" flex flex-col  justify-center  w-full ">
       <Tab.Group>
         <Tab.List className=" flex space-x-1 rounded-xl bg-blue-300/20 p-1">
-          {Object.keys(categories).map((category) => (
+          {Object.keys(categories).map((category, index) => (
             <Tab
+              key={index}
               className={({ selected }) =>
                 classNames(
                   "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-black",

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import AttendanceService from "src/services/attendance.service";
 import SuspenseLoader from "src/components/SuspenseLoader";
+import { getMeeting } from "src/enums/meeting_types";
 
 const ChildrenTable = () => {
   const { isLoading, error, data } = useQuery({
@@ -63,7 +64,7 @@ const ChildrenTable = () => {
                   {data.map((children: any, index: any) => (
                     <tr className="border-b" key={index}>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {children.meetingType}
+                        {getMeeting(children.meetingType)}
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                         {children.brothers}
