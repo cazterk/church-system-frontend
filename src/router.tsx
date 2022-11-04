@@ -12,6 +12,8 @@ const Loader = (Component: any) => (props: any) =>
 // components
 const Layout = Loader(lazy(() => import("src/container/Layout")));
 
+//forms
+const TitheForm = Loader(lazy(() => import("src/components/forms/titheForm")));
 // pages
 const HomePage = Loader(lazy(() => import("src/pages/home")));
 const AttendancePage = Loader(lazy(() => import("src/pages/attendance")));
@@ -33,6 +35,10 @@ const routes: RouteObject[] = [
       {
         path: "/tithe",
         element: <TithePage />,
+      },
+      {
+        path: "/tithe-form",
+        element: <TitheForm />,
       },
     ],
   },

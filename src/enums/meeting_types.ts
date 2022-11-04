@@ -8,6 +8,38 @@ const meetingTypes = {
   OTHR: "Other Meetings",
 };
 
+export const meetingTypesSetter = [
+  {
+    value: 1,
+    label: "Sunday Worship Service",
+  },
+
+  {
+    value: 2,
+    label: "Monday  Bible Study ",
+  },
+  {
+    value: 3,
+    label: "Wednesday Prayer & Fasting",
+  },
+  {
+    value: 4,
+    label: "THursday Revival Hour",
+  },
+  {
+    value: 5,
+    label: "Saturday Worker's Trainee",
+  },
+  {
+    value: 6,
+    label: "Globle Crude With Kumuyi",
+  },
+  {
+    value: 7,
+    label: "Other Meetings",
+  },
+];
+
 export const getMeeting = (value: number) => {
   switch (value) {
     case 1:

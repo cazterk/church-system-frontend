@@ -1,24 +1,93 @@
+import React, { useState } from "react";
 import * as Yup from "yup";
-import { withFormik, FormikProps, FormikErrors, Form, Field } from "formik";
+import {
+  withFormik,
+  Formik,
+  FormikProps,
+  FormikErrors,
+  Form,
+  Field,
+} from "formik";
+
+import * as HiIcons from "react-icons/hi";
+import * as FcIcons from "react-icons/fc";
 
 import { ITithe } from "src/Interfaces/tithe.interface";
+import { meetingTypesSetter } from "src/enums/meeting_types";
+import { Button } from "flowbite-react";
 
 interface OtherProps {
   message: string;
 }
 
-const TitheForm = (props: OtherProps & FormikProps<ITithe>) => {
-  const { touched, errors, isSubmitting, message } = props;
+const TitheForm: React.FC<{}> = () => {
+  const initialValues: ITithe = {
+    meetingType: 0,
+    collectionedAmount: 0,
+    date: new Date(),
+  };
+  const [meeting, setMeeting] = useState<number>();
+
+  const handleMeetingTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMeeting(parseInt(e.target.value));
+  };
+
+  let inputClass =
+    "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
+
   return (
     <>
-      <Form>
-        <Field type="select" name="meetingType">
-          <option></option>
-        </Field>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={(values, actions) => {
+          console.log({ values, actions });
+          alert(JSON.stringify(values, null, 2));
+        }}
+      >
+        <Form className="flex flex-col ">
+          <label htmlFor="meetingType">Select Meeting Type</label>
+          <Field
+            type="select"
+            name="meetingType"
+            id="meetingType"
+            as="select"
+            className={`${inputClass}`}
+          >
+            {meetingTypesSetter.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </Field>
+          <label htmlFor="firstName">Amount Collected</label>
+          <Field
+            id="collectionedAmount"
+            name="collectionedAmount"
+            placeholder="enter amount"
+            className={`${inputClass}`}
+          />
 
-        <Field name="amountCollected" value />
-        <Field name="amountUncollected" type="checkbox"></Field>
-      </Form>
+          <div className="relative">
+            <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"></div>
+            <label htmlFor="firstName">Select Date</label>
+            <input
+              type="date"
+              className={`${inputClass}`}
+              placeholder="Select date"
+            />
+          </div>
+          {/* <Field name="amountUncollected" type="datepicker"></Field> */}
+
+          <div className="flex flex-wrap items-center gap-2">
+            <div>
+              <Button type="submit">
+                Submit
+                <HiIcons.HiOutlineArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+          </div>
+        </Form>
+      </Formik>
     </>
   );
 };
