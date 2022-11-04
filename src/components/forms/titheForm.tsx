@@ -15,6 +15,7 @@ import * as FcIcons from "react-icons/fc";
 import { ITithe } from "src/Interfaces/tithe.interface";
 import { meetingTypesSetter } from "src/enums/meeting_types";
 import { Button } from "flowbite-react";
+import TitheService from "src/services/titthe.service";
 
 interface OtherProps {
   message: string;
@@ -41,7 +42,7 @@ const TitheForm: React.FC<{}> = () => {
         initialValues={initialValues}
         onSubmit={(values, actions) => {
           console.log({ values, actions });
-          alert(JSON.stringify(values, null, 2));
+          TitheService.createTithe(JSON.stringify(values, null, 2));
         }}
       >
         <Form className="flex flex-col ">
@@ -52,6 +53,8 @@ const TitheForm: React.FC<{}> = () => {
             id="meetingType"
             as="select"
             className={`${inputClass}`}
+            onChange={handleMeetingTypeChange}
+            value={initialValues.meetingType}
           >
             {meetingTypesSetter.map((option) => (
               <option key={option.value} value={option.value}>
@@ -79,12 +82,10 @@ const TitheForm: React.FC<{}> = () => {
           {/* <Field name="amountUncollected" type="datepicker"></Field> */}
 
           <div className="flex flex-wrap items-center gap-2">
-            <div>
-              <Button type="submit">
-                Submit
-                <HiIcons.HiOutlineArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </div>
+            <Button type="submit">
+              Submit
+              <HiIcons.HiOutlineArrowRight className="ml-2 h-5 w-5" />
+            </Button>
           </div>
         </Form>
       </Formik>
