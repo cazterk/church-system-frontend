@@ -1,9 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import TitheService from "src/services/titthe.service";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SuspenseLoader from "src/components/SuspenseLoader";
+import Pagination from "../pagination";
+import { getMeeting } from "src/enums/meeting_types";
 
 const TitheTable = () => {
+  const [page, setPage] = React.useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage] = useState(7);
+
+  const onPageChange = (newPage: number) => {
+    setPage(newPage);
+  };
   const { isLoading, error, data } = useQuery({
     queryKey: ["tithe"],
     queryFn: TitheService.getAllTithe,
@@ -23,6 +32,12 @@ const TitheTable = () => {
         An error has occurred: {error.message}
       </div>
     );
+
+  const indexOfLastEntry = currentPage * rowsPerPage;
+  const indexOfFirstEntry = indexOfLastEntry - rowsPerPage;
+  const currentEntries = data.slice(indexOfFirstEntry, indexOfLastEntry);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <React.Fragment>
@@ -54,10 +69,10 @@ const TitheTable = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((tithe: any, index: any) => (
+                  {currentEntries.map((tithe: any, index: any) => (
                     <tr className="border-b" key={index}>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {tithe.meetingType}
+                        {getMeeting(tithe.meetingType)}
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                         {tithe.collectionedAmount}
@@ -69,6 +84,11 @@ const TitheTable = () => {
                   ))}
                 </tbody>
               </table>
+              <Pagination
+                rowsPerPage={rowsPerPage}
+                totalPages={data.length}
+                paginate={paginate}
+              />
             </div>
           </div>
         </div>

@@ -24,7 +24,7 @@ export const meetingTypesSetter = [
   },
   {
     value: 4,
-    label: "THursday Revival Hour",
+    label: "Thursday Revival Hour",
   },
   {
     value: 5,
