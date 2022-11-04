@@ -10,7 +10,7 @@ const Tithe = () => {
       <h1 className="text-center">This is the tithe page</h1>
       <TitheTable />
 
-      <div className="flex flex-wrap justify-center my-8 items-center gap-2">
+      <div className="flex flex-wrap justify-center  items-center gap-2">
         <Link to="/tithe-form">
           <Button type="submit" className="p-2 text-center text-white w-64">
             Add New Entry
