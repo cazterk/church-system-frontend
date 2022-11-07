@@ -1,5 +1,5 @@
 export interface ITithe {
   meetingType: number;
-  collectionedAmount: number;
+  collectedAmount: number;
   date: Date;
 }

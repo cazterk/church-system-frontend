@@ -9,6 +9,11 @@ const TitheTable = () => {
   const [page, setPage] = React.useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(7);
+  let [categories] = useState({
+    Meeting: 1,
+    "Amount Collected": 2,
+    Date: 3,
+  });
 
   const onPageChange = (newPage: number) => {
     setPage(newPage);
@@ -48,24 +53,15 @@ const TitheTable = () => {
               <table className="min-w-full">
                 <thead className="border-b">
                   <tr>
-                    <th
-                      scope="col"
-                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                    >
-                      Meeting
-                    </th>
-                    <th
-                      scope="col"
-                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                    >
-                      Amount Collected
-                    </th>
-                    <th
-                      scope="col"
-                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                    >
-                      Date
-                    </th>
+                    {Object.keys(categories).map((category, index) => (
+                      <th
+                        key={index}
+                        scope="col"
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
+                        {category}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody>
@@ -75,7 +71,7 @@ const TitheTable = () => {
                         {getMeeting(tithe.meetingType)}
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {tithe.collectionedAmount}
+                        {tithe.collectedAmount}
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                         {tithe.date}

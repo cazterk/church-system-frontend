@@ -21,10 +21,13 @@ const Pagination = ({ rowsPerPage, totalPages, paginate }: PaginationProps) => {
       <nav>
         <ul className="flex justify-center m-4">
           {pagesCount.map((number) => (
-            <a onClick={() => paginate(number)} href="#" className="">
-              <li key={number} className={`${liClassName}`}>
-                {number}
-              </li>
+            <a
+              onClick={() => paginate(number)}
+              href="#"
+              className=""
+              key={number}
+            >
+              <li className={`${liClassName}`}>{number}</li>
             </a>
           ))}
         </ul>
