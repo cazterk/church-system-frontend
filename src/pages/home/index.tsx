@@ -1,4 +1,4 @@
-import TitheForm from "src/components/forms/titheForm";
+import TitheForm from "src/components/forms/TitheForm";
 
 const Home = () => {
   return (

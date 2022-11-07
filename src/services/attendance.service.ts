@@ -9,7 +9,7 @@ const getAllChildren = async () => {
   });
 };
 
-const getOneChild = async (id) => {
+const getChildren = async (id) => {
   return api.get(`children/${id}`).then((response) => {
     let payload = response.data;
     return payload;
@@ -32,7 +32,7 @@ const createChildren = async (children) => {
     });
 };
 
-const updateChild = async (id, payload) => {
+const updateChildren = async (id, payload) => {
   return api.put(`children/${id}`, payload).then((response) => {
     let payload = response.data;
     return payload;
@@ -55,10 +55,19 @@ const getOneYouths = async (id) => {
 };
 
 const createYouths = async (payload) => {
-  return api.post("youths", payload).then((response) => {
-    let payload = response.data;
-    return payload;
-  });
+  return api
+    .post("youths", payload)
+    .then((response) => {
+      if (response.status === 200) {
+        showEntrySuccessToast(response.status + " redirecting in 5 seconds");
+        setTimeout(() => window.location.replace("/attendance"), 5000);
+      }
+      let payload = response.data;
+      return payload;
+    })
+    .catch((err) => {
+      showErrorToast(err.message);
+    });
 };
 
 const updateYouths = async (id, payload) => {
@@ -76,21 +85,21 @@ const getAllAdults = async () => {
   });
 };
 
-const getOneAdult = async (id) => {
+const getOneAdultsEntry = async (id) => {
   return api.get(`adults/${id}`).then((response) => {
     let payload = response.data;
     return payload;
   });
 };
 
-const createAdult = async (payload) => {
+const createAdults = async (payload) => {
   return api.post("adults", payload).then((response) => {
     let payload = response.data;
     return payload;
   });
 };
 
-const updateAdult = async (id, payload) => {
+const updateAdults = async (id, payload) => {
   return api.put(`adults/${id}`, payload).then((response) => {
     let payload = response.data;
     return payload;
@@ -99,17 +108,17 @@ const updateAdult = async (id, payload) => {
 
 const AttendanceService = {
   getAllChildren,
-  getOneChild,
+  getChildren,
   createChildren,
-  updateChild,
+  updateChildren,
   getAllYouths,
   getOneYouths,
   createYouths,
   updateYouths,
   getAllAdults,
-  getOneAdult,
-  createAdult,
-  updateAdult,
+  getOneAdultsEntry,
+  createAdults,
+  updateAdults,
 };
 
 export default AttendanceService;
