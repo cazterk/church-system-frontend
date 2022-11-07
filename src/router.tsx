@@ -15,10 +15,10 @@ const Layout = Loader(lazy(() => import("src/container/Layout")));
 //forms
 const TitheForm = Loader(lazy(() => import("src/components/forms/titheForm")));
 const ChildrenForm = Loader(
-  lazy(() => import("src/components/forms/childrenForm"))
+  lazy(() => import("src/components/forms/ChildrenForm"))
 );
 const YouthsForm = Loader(
-  lazy(() => import("src/components/forms/youthsForm"))
+  lazy(() => import("src/components/forms/YouthsForm"))
 );
 const AdultsForm = Loader(
   lazy(() => import("src/components/forms/AdultsForm"))
@@ -51,7 +51,7 @@ const routes: RouteObject[] = [
         element: <TitheForm />,
       },
       {
-        path: "/attendance-form",
+        path: "/children-form",
         element: <ChildrenForm />,
       },
       {

@@ -1,5 +1,3 @@
-import TitheForm from "src/components/forms/TitheForm";
-
 const Home = () => {
   return (
     <div>

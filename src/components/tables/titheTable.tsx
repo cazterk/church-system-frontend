@@ -6,7 +6,7 @@ import Pagination from "../pagination";
 import { getMeeting } from "src/enums/meeting_types";
 
 const TitheTable = () => {
-  const [page, setPage] = React.useState(0);
+  const [page, setPage] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(7);
   let [categories] = useState({

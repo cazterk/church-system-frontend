@@ -26,7 +26,7 @@ const Attendance = () => {
           </i>
         </div>
 
-        <Link to="/attendance-form">
+        <Link to="/children-form">
           <Button color="success" size="sm" className="p-1 bg-green-500">
             Children
           </Button>

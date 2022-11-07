@@ -52,6 +52,8 @@ const ChildrenForm: React.FC<{}> = () => {
       >
         {({ errors, touched }) => (
           <Form className="flex flex-col w-6/12 ">
+            <h2 className="text-center font-bold">Children Entry</h2>
+
             <div className={`${fieldClass}`}>
               <label htmlFor="meetingType">Select Meeting Type</label>
               <Field
