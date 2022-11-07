@@ -1,9 +1,21 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+
 import AttendanceService from "src/services/attendance.service";
 import SuspenseLoader from "src/components/SuspenseLoader";
 import { getMeeting } from "src/enums/meeting_types";
+import Pagination from "src/components/pagination";
 
 const ChildrenTable = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage] = useState(7);
+  let [categories] = useState({
+    Meeting: 1,
+    Brothers: 2,
+    Sisters: 3,
+    Date: 3,
+  });
+
   const { isLoading, error, data } = useQuery({
     queryKey: ["children"],
     queryFn: AttendanceService.getAllChildren,
@@ -25,6 +37,12 @@ const ChildrenTable = () => {
       </div>
     );
 
+  const indexOfLastEntry = currentPage * rowsPerPage;
+  const indexOfFirstEntry = indexOfLastEntry - rowsPerPage;
+  const currentEntries = data.slice(indexOfFirstEntry, indexOfLastEntry);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <>
       <div className="flex flex-col  ">
@@ -34,34 +52,19 @@ const ChildrenTable = () => {
               <table className="min-w-full">
                 <thead className="border-b">
                   <tr>
-                    <th
-                      scope="col"
-                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                    >
-                      Meeting
-                    </th>
-                    <th
-                      scope="col"
-                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                    >
-                      Brothers
-                    </th>
-                    <th
-                      scope="col"
-                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                    >
-                      Sisters
-                    </th>
-                    <th
-                      scope="col"
-                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                    >
-                      Date
-                    </th>
+                    {Object.keys(categories).map((category, index) => (
+                      <th
+                        key={index}
+                        scope="col"
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
+                        {category}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((children: any, index: any) => (
+                  {currentEntries.map((children: any, index: any) => (
                     <tr className="border-b" key={index}>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                         {getMeeting(children.meetingType)}
@@ -79,6 +82,11 @@ const ChildrenTable = () => {
                   ))}
                 </tbody>
               </table>
+              <Pagination
+                rowsPerPage={rowsPerPage}
+                totalPages={data.length}
+                paginate={paginate}
+              />
             </div>
           </div>
         </div>
