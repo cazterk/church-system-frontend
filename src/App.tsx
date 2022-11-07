@@ -9,11 +9,9 @@ import { ToastContainer, toast } from "react-toastify";
 
 const App = () => {
   const queryClient = new QueryClient();
-  const notify = () => toast("Wow so easy !");
   const appInstance = useRoutes(routes);
   return (
     <QueryClientProvider client={queryClient}>
-      <button onClick={notify}>Notify !</button>
       <ToastContainer />
       {appInstance}
     </QueryClientProvider>

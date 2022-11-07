@@ -1,4 +1,5 @@
 import { api } from "src/api/api";
+import { showEntrySuccessToast, showErrorToast } from "src/components/toasts";
 
 // children api methods
 const getAllChildren = async () => {
@@ -15,11 +16,20 @@ const getOneChild = async (id) => {
   });
 };
 
-const createChild = async (payload) => {
-  return api.post("children", payload).then((response) => {
-    let payload = response.data;
-    return payload;
-  });
+const createChildren = async (children) => {
+  return api
+    .post("children", children)
+    .then((response) => {
+      if (response.status === 200) {
+        showEntrySuccessToast(response.status + "redirecting in 5 ");
+        setTimeout(() => window.location.replace("/attendance"));
+      }
+      let payload = response.data;
+      return payload;
+    })
+    .catch((err) => {
+      showErrorToast(err.message);
+    });
 };
 
 const updateChild = async (id, payload) => {
@@ -90,7 +100,7 @@ const updateAdult = async (id, payload) => {
 const AttendanceService = {
   getAllChildren,
   getOneChild,
-  createChild,
+  createChildren,
   updateChild,
   getAllYouths,
   getOneYouths,

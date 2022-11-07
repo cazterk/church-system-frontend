@@ -1,11 +1,11 @@
+import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import * as Yup from "yup";
-import { Formik, Form, Field } from "formik";
 
-import { ITithe } from "src/Interfaces/tithe.interface";
+import { IAttendance } from "src/Interfaces/attendance.interface";
+import AttendanceService from "src/services/attendance.service";
 import { meetingTypesSetter } from "src/enums/meeting_types";
 import { Button } from "flowbite-react";
-import TitheService from "src/services/titthe.service";
 
 const titheValidationSchema = Yup.object({
   meetingType: Yup.number().required("Required"),
@@ -13,12 +13,14 @@ const titheValidationSchema = Yup.object({
   date: Yup.date().required("Required"),
 });
 
-const TitheForm: React.FC<{}> = () => {
-  const initialValues: ITithe = {
+const ChildrenForm: React.FC<{}> = () => {
+  const initialValues: IAttendance = {
+    brothers: 0,
+    sisters: 0,
     meetingType: null,
-    collectedAmount: 0,
     date: new Date(),
   };
+
   let [meeting, setMeeting] = useState<number>();
 
   const handleMeetingTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +45,7 @@ const TitheForm: React.FC<{}> = () => {
         validationSchema={titheValidationSchema}
         onSubmit={(values, { resetForm }) => {
           console.log({ values });
-          TitheService.createTithe(JSON.stringify(values, null, 2));
+          alert(JSON.stringify(values, null, 2));
           resetForm({});
         }}
       >
@@ -56,7 +58,7 @@ const TitheForm: React.FC<{}> = () => {
                 name="meetingType"
                 id="meetingType"
                 as="select"
-                placeholder="select meeting"
+                label="Select meeting"
                 className={`${inputClass}`}
                 onChange={handleMeetingTypeChange}
                 value={meeting}
@@ -72,21 +74,35 @@ const TitheForm: React.FC<{}> = () => {
               ) : null}
             </div>
             <div className={`${fieldClass}`}>
-              <label htmlFor="firstName">Amount Collected</label>
+              <label htmlFor="brothers">Number of brothers</label>
               <Field
-                id="collectedAmount"
-                name="collectedAmount"
-                placeholder="enter amount"
+                id="brothers"
+                name="brothers"
+                placeholder="brothers"
                 className={`${inputClass}`}
               />
-              {errors.collectedAmount && touched.collectedAmount ? (
-                <div className={`${textDanger}`}>{errors.collectedAmount}</div>
+              {errors.brothers && touched.brothers ? (
+                <div className={`${textDanger}`}>{errors.brothers}</div>
               ) : null}
             </div>
+
+            <div className={`${fieldClass}`}>
+              <label htmlFor="sisters">Number of sisters</label>
+              <Field
+                id="sisters"
+                name="sisters"
+                placeholder="sisters"
+                className={`${inputClass}`}
+              />
+              {errors.sisters && touched.sisters ? (
+                <div className={`${textDanger}`}>{errors.sisters}</div>
+              ) : null}
+            </div>
+
             <div className={`${fieldClass}`}>
               <div className="relative">
                 <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"></div>
-                <label htmlFor="firstName">Select Date</label>
+                <label htmlFor="date">Select Date</label>
                 <input
                   type="date"
                   className={`${inputClass}`}
@@ -94,7 +110,6 @@ const TitheForm: React.FC<{}> = () => {
                 />
               </div>
             </div>
-            {/* <Field name="amountUncollected" type="datepicker"></Field> */}
 
             <div className="flex flex-wrap justify-center my-8 items-center gap-2">
               <Button
@@ -110,5 +125,4 @@ const TitheForm: React.FC<{}> = () => {
     </div>
   );
 };
-
-export default TitheForm;
+export default ChildrenForm;
