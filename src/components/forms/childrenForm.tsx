@@ -9,7 +9,8 @@ import { Button } from "flowbite-react";
 
 const titheValidationSchema = Yup.object({
   meetingType: Yup.number().required("Required"),
-  collectedAmount: Yup.number().required(),
+  brothers: Yup.number().required(),
+  sisters: Yup.number().required(),
   date: Yup.date().required("Required"),
 });
 
@@ -45,7 +46,7 @@ const ChildrenForm: React.FC<{}> = () => {
         validationSchema={titheValidationSchema}
         onSubmit={(values, { resetForm }) => {
           console.log({ values });
-          alert(JSON.stringify(values, null, 2));
+          AttendanceService.createChildren(JSON.stringify(values, null, 2));
           resetForm({});
         }}
       >

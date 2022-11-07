@@ -94,8 +94,6 @@ const TitheForm: React.FC<{}> = () => {
                 />
               </div>
             </div>
-            {/* <Field name="amountUncollected" type="datepicker"></Field> */}
-
             <div className="flex flex-wrap justify-center my-8 items-center gap-2">
               <Button
                 type="submit"

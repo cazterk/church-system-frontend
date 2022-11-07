@@ -14,7 +14,7 @@ const createTithe = async (tithe) => {
     .post("tithe", tithe)
     .then((response: any) => {
       if (response.status === 200) {
-        showEntrySuccessToast(response.status + " redirecting in 5");
+        showEntrySuccessToast(response.status + " redirecting in 5 seconds");
         console.log("success");
         setTimeout(() => window.location.replace("/tithe"), 5000);
       }
