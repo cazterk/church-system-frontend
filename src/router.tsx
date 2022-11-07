@@ -13,7 +13,7 @@ const Loader = (Component: any) => (props: any) =>
 const Layout = Loader(lazy(() => import("src/container/Layout")));
 
 //forms
-const TitheForm = Loader(lazy(() => import("src/components/forms/titheForm")));
+const TitheForm = Loader(lazy(() => import("src/components/forms/TitheForm")));
 const ChildrenForm = Loader(
   lazy(() => import("src/components/forms/ChildrenForm"))
 );
