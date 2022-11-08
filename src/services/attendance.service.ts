@@ -32,8 +32,8 @@ const createChildren = async (children) => {
     });
 };
 
-const updateChildren = async (id, payload) => {
-  return api.put(`children/${id}`, payload).then((response) => {
+const updateChildren = async (clientId, payload) => {
+  return api.put(`children/${clientId}/`, payload).then((response) => {
     let payload = response.data;
     return payload;
   });
@@ -47,7 +47,9 @@ const getAllYouths = async () => {
   });
 };
 
-const getOneYouths = async (id) => {
+const getOneYouthsEntry = async ({ queryKey }) => {
+  const [_key, { id }] = queryKey;
+
   return api.get(`youths/${id}`).then((response) => {
     let payload = response.data;
     return payload;
@@ -85,7 +87,7 @@ const getAllAdults = async () => {
   });
 };
 
-const getOneAdultsEntry = async (id) => {
+const getOneAdultsEntry = async (id: number) => {
   return api.get(`adults/${id}`).then((response) => {
     let payload = response.data;
     return payload;
@@ -121,7 +123,7 @@ const AttendanceService = {
   createChildren,
   updateChildren,
   getAllYouths,
-  getOneYouths,
+  getOneYouthsEntry,
   createYouths,
   updateYouths,
   getAllAdults,

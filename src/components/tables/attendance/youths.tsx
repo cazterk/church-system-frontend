@@ -7,6 +7,7 @@ import { getMeeting } from "src/enums/meeting_types";
 import Pagination from "src/components/pagination";
 import { tableTd, tableTh } from "src/styles/table";
 import { Button } from "flowbite-react";
+import { Link, useParams } from "react-router-dom";
 
 const YouthsTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -71,14 +72,15 @@ const YouthsTable = () => {
                       <td className={`${tableTd}`}>{youths.sisters}</td>
                       <td className={`${tableTd}`}>{youths.date}</td>
                       <td className={`${tableTd}`}>
-                        {" "}
-                        <Button
-                          color="orange"
-                          size="xm"
-                          className="p-1.5 bg-orange-400 text-white"
-                        >
-                          Update
-                        </Button>
+                        <Link to={`/update-youths/${youths.id}`}>
+                          <Button
+                            color="orange"
+                            size="xm"
+                            className="p-1.5 bg-orange-400 text-white"
+                          >
+                            Update
+                          </Button>
+                        </Link>
                       </td>
                     </tr>
                   ))}

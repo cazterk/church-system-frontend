@@ -77,6 +77,7 @@ const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
                 name="brothers"
                 placeholder="brothers"
                 className={`${inputClass}`}
+                value={initialValues?.brothers}
               />
               {errors.brothers && touched.brothers ? (
                 <div className={`${textDanger}`}>{errors.brothers}</div>
@@ -90,6 +91,7 @@ const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
                 name="sisters"
                 placeholder="sisters"
                 className={`${inputClass}`}
+                value={initialValues?.sisters}
               />
               {errors.sisters && touched.sisters ? (
                 <div className={`${textDanger}`}>{errors.sisters}</div>
@@ -104,6 +106,7 @@ const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
                   type="date"
                   className={`${inputClass}`}
                   placeholder="Select date"
+                  value={initialValues?.date}
                 />
               </div>
             </div>
