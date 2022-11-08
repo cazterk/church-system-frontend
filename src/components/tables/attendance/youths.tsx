@@ -5,6 +5,7 @@ import AttendanceService from "src/services/attendance.service";
 import SuspenseLoader from "src/components/SuspenseLoader";
 import { getMeeting } from "src/enums/meeting_types";
 import Pagination from "src/components/pagination";
+import { tableTd, tableTh } from "src/styles/table";
 
 const YouthsTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -52,11 +53,7 @@ const YouthsTable = () => {
                 <thead className="border-b">
                   <tr>
                     {Object.keys(categories).map((category, index) => (
-                      <th
-                        key={index}
-                        scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                      >
+                      <th key={index} scope="col" className={`${tableTh}`}>
                         {category}
                       </th>
                     ))}
@@ -65,18 +62,12 @@ const YouthsTable = () => {
                 <tbody>
                   {currentEntries.map((youths: any, index: any) => (
                     <tr className="border-b" key={index}>
-                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <td className={`${tableTd}`}>
                         {getMeeting(youths.meetingType)}
                       </td>
-                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {youths.brothers}
-                      </td>
-                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {youths.sisters}
-                      </td>
-                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {youths.date}
-                      </td>
+                      <td className={`${tableTd}`}>{youths.brothers}</td>
+                      <td className={`${tableTd}`}>{youths.sisters}</td>
+                      <td className={`${tableTd}`}>{youths.date}</td>
                     </tr>
                   ))}
                 </tbody>

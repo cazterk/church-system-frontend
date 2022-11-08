@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import SuspenseLoader from "src/components/SuspenseLoader";
 import Pagination from "../pagination";
 import { getMeeting } from "src/enums/meeting_types";
+import { tableTd, tableTh } from "src/styles/table";
 
 const TitheTable = () => {
   const [page, setPage] = useState(0);
@@ -54,11 +55,7 @@ const TitheTable = () => {
                 <thead className="border-b">
                   <tr>
                     {Object.keys(categories).map((category, index) => (
-                      <th
-                        key={index}
-                        scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                      >
+                      <th key={index} scope="col" className={`${tableTh}`}>
                         {category}
                       </th>
                     ))}
@@ -67,15 +64,11 @@ const TitheTable = () => {
                 <tbody>
                   {currentEntries.map((tithe: any, index: any) => (
                     <tr className="border-b" key={index}>
-                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <td className={`${tableTd}`}>
                         {getMeeting(tithe.meetingType)}
                       </td>
-                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {tithe.collectedAmount}
-                      </td>
-                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {tithe.date}
-                      </td>
+                      <td className={`${tableTd}`}>{tithe.collectedAmount}</td>
+                      <td className={`${tableTd}`}>{tithe.date}</td>
                     </tr>
                   ))}
                 </tbody>

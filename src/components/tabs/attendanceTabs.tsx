@@ -27,7 +27,7 @@ const AttendanceTabs = () => {
                   "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-200 focus:outline-none focus:ring-2",
                   selected
                     ? "bg-white shadow"
-                    : "text-black hover:bg-white/[0.12] hover:text-white"
+                    : "text-black hover:bg-white/[0.12]"
                 )
               }
             >

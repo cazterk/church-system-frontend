@@ -5,6 +5,7 @@ import AttendanceService from "src/services/attendance.service";
 import SuspenseLoader from "src/components/SuspenseLoader";
 import { getMeeting } from "src/enums/meeting_types";
 import Pagination from "src/components/pagination";
+import { tableTd, tableTh } from "src/styles/table";
 
 const ChildrenTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,11 +54,7 @@ const ChildrenTable = () => {
                 <thead className="border-b">
                   <tr>
                     {Object.keys(categories).map((category, index) => (
-                      <th
-                        key={index}
-                        scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                      >
+                      <th key={index} scope="col" className={`${tableTh}`}>
                         {category}
                       </th>
                     ))}
@@ -66,18 +63,12 @@ const ChildrenTable = () => {
                 <tbody>
                   {currentEntries.map((children: any, index: any) => (
                     <tr className="border-b" key={index}>
-                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <td className={`${tableTd}`}>
                         {getMeeting(children.meetingType)}
                       </td>
-                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {children.brothers}
-                      </td>
-                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {children.sisters}
-                      </td>
-                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {children.date}
-                      </td>
+                      <td className={`${tableTd}`}>{children.brothers}</td>
+                      <td className={`${tableTd}`}>{children.sisters}</td>
+                      <td className={`${tableTd}`}>{children.date}</td>
                     </tr>
                   ))}
                 </tbody>
