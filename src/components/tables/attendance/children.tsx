@@ -6,6 +6,7 @@ import SuspenseLoader from "src/components/SuspenseLoader";
 import { getMeeting } from "src/enums/meeting_types";
 import Pagination from "src/components/pagination";
 import { tableTd, tableTh } from "src/styles/table";
+import { Button } from "flowbite-react";
 
 const ChildrenTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,7 +15,8 @@ const ChildrenTable = () => {
     Meeting: 1,
     Brothers: 2,
     Sisters: 3,
-    Date: 3,
+    Date: 4,
+    Actions: 5,
   });
 
   const { isLoading, error, data } = useQuery({
@@ -69,6 +71,16 @@ const ChildrenTable = () => {
                       <td className={`${tableTd}`}>{children.brothers}</td>
                       <td className={`${tableTd}`}>{children.sisters}</td>
                       <td className={`${tableTd}`}>{children.date}</td>
+                      <td className={`${tableTd}`}>
+                        {" "}
+                        <Button
+                          color="orange"
+                          size="xm"
+                          className="p-1.5 bg-orange-400 text-white"
+                        >
+                          Update
+                        </Button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>

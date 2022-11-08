@@ -17,9 +17,7 @@ const TitheForm = Loader(lazy(() => import("src/components/forms/TitheForm")));
 const ChildrenForm = Loader(
   lazy(() => import("src/components/forms/ChildrenForm"))
 );
-const YouthsForm = Loader(
-  lazy(() => import("src/components/forms/YouthsForm"))
-);
+const YouthsForm = Loader(lazy(() => import("src/pages/attendance/update")));
 const AdultsForm = Loader(
   lazy(() => import("src/components/forms/AdultsForm"))
 );

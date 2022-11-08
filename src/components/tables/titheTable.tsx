@@ -5,6 +5,7 @@ import SuspenseLoader from "src/components/SuspenseLoader";
 import Pagination from "../pagination";
 import { getMeeting } from "src/enums/meeting_types";
 import { tableTd, tableTh } from "src/styles/table";
+import { Button } from "flowbite-react";
 
 const TitheTable = () => {
   const [page, setPage] = useState(0);
@@ -14,6 +15,7 @@ const TitheTable = () => {
     Meeting: 1,
     "Amount Collected": 2,
     Date: 3,
+    Actions: 4,
   });
 
   const onPageChange = (newPage: number) => {
@@ -69,6 +71,16 @@ const TitheTable = () => {
                       </td>
                       <td className={`${tableTd}`}>{tithe.collectedAmount}</td>
                       <td className={`${tableTd}`}>{tithe.date}</td>
+                      <td className={`${tableTd}`}>
+                        {" "}
+                        <Button
+                          color="orange"
+                          size="xm"
+                          className="p-1.5 bg-orange-400 text-white"
+                        >
+                          Update
+                        </Button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
