@@ -16,16 +16,10 @@ const titheValidationSchema = Yup.object({
 
 interface AttendancePrps {
   initialValues: IAttendance;
-  submit: () => void;
+  submit: any;
+  title: string;
 }
-const AttendanceForm = ({ initialValues, submit }: AttendancePrps) => {
-  initialValues = {
-    brothers: 0,
-    sisters: 0,
-    meetingType: null,
-    date: new Date(),
-  };
-
+const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
   let [meeting, setMeeting] = useState<number>();
 
   const handleMeetingTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,7 +46,7 @@ const AttendanceForm = ({ initialValues, submit }: AttendancePrps) => {
       >
         {({ errors, touched }) => (
           <Form className="flex flex-col w-6/12 ">
-            <h2 className="text-center font-bold">Test Entry</h2>
+            <h2 className="text-center font-bold">{title} Entry</h2>
 
             <div className={`${fieldClass}`}>
               <label htmlFor="meetingType">Select Meeting Type</label>

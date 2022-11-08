@@ -14,18 +14,20 @@ const Layout = Loader(lazy(() => import("src/container/Layout")));
 
 //forms
 const TitheForm = Loader(lazy(() => import("src/components/forms/TitheForm")));
-const ChildrenForm = Loader(
-  lazy(() => import("src/components/forms/ChildrenForm"))
-);
-const YouthsForm = Loader(lazy(() => import("src/pages/attendance/update")));
-const AdultsForm = Loader(
-  lazy(() => import("src/components/forms/AdultsForm"))
-);
 
 // pages
 const HomePage = Loader(lazy(() => import("src/pages/home")));
 const AttendancePage = Loader(lazy(() => import("src/pages/attendance")));
 const TithePage = Loader(lazy(() => import("src/pages/tithe")));
+const CreateChildrenAttendance = Loader(
+  lazy(() => import("src/pages/attendance/create/Children"))
+);
+const CreateYouthsAttendance = Loader(
+  lazy(() => import("src/pages/attendance/create/Youths"))
+);
+const CreateAdultsAttendance = Loader(
+  lazy(() => import("src/pages/attendance/create/Adults"))
+);
 
 const routes: RouteObject[] = [
   {
@@ -49,16 +51,16 @@ const routes: RouteObject[] = [
         element: <TitheForm />,
       },
       {
-        path: "/children-form",
-        element: <ChildrenForm />,
+        path: "/create-children",
+        element: <CreateChildrenAttendance />,
       },
       {
-        path: "/youths-form",
-        element: <YouthsForm />,
+        path: "/create-youths",
+        element: <CreateYouthsAttendance />,
       },
       {
-        path: "/adults-form",
-        element: <AdultsForm />,
+        path: "/create-adults",
+        element: <CreateAdultsAttendance />,
       },
     ],
   },
