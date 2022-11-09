@@ -72,11 +72,20 @@ const createYouths = async (payload) => {
     });
 };
 
-const updateYouths = async (id, payload) => {
-  return api.put(`youths/${id}`, payload).then((response) => {
-    let payload = response.data;
-    return payload;
-  });
+const updateYouths = async ({ id, ...payload }) => {
+  return api
+    .put(`youths/${id}`, payload)
+    .then((response) => {
+      if (response.status === 200) {
+        showEntrySuccessToast(response.status + " redirecting in 5 seconds");
+        setTimeout(() => window.location.replace("/attendance"), 5000);
+      }
+      let payload = response.data;
+      return payload;
+    })
+    .catch((err) => {
+      showErrorToast(err.message);
+    });
 };
 
 // adults api methods

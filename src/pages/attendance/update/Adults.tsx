@@ -13,10 +13,10 @@ const UpdateYouthsAttendance = () => {
     queryKey: ["youths", id],
     queryFn: AttendanceService.getOneYouthsEntry,
   });
-  //   const { mutate } = useMutation(AttendanceService.updateYouths);
+  const { mutate } = useMutation(AttendanceService.updateYouths);
 
   const handleSubmit = useCallback((values, { resetForm }) => {
-    // mutate({ ...values, id });
+    mutate({ ...values, id });
     resetForm({});
   }, []);
 

@@ -4,8 +4,10 @@ import * as Yup from "yup";
 
 import { IAttendance } from "src/Interfaces/attendance.interface";
 import AttendanceService from "src/services/attendance.service";
-import { meetingTypesSetter } from "src/enums/meeting_types";
+import { getMeeting, meetingTypesSetter } from "src/enums/meeting_types";
 import { Button } from "flowbite-react";
+import { useQuery } from "@tanstack/react-query";
+import moment from "moment";
 
 const titheValidationSchema = Yup.object({
   meetingType: Yup.number().required("Required"),
@@ -21,7 +23,7 @@ interface AttendancePrps {
 }
 const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
   let [meeting, setMeeting] = useState<number>();
-
+  const [value, setValue] = useState(moment().format("YYYY-MM-DD"));
   const handleMeetingTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setMeeting(parseInt(e.target.value));
@@ -30,6 +32,11 @@ const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
     } catch (e) {
       console.error(e);
     }
+  };
+  const onChangeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // const newDate = moment(e.target.value).format("YYYY-MM-DD");
+    // e.preventDefault();
+    // initialValues.date = moment(initialValues.date).format("YYYY-MM-DD");
   };
 
   let inputClass =
@@ -43,6 +50,7 @@ const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
         initialValues={initialValues}
         validationSchema={titheValidationSchema}
         onSubmit={submit}
+        enableReinitialize
       >
         {({ errors, touched }) => (
           <Form className="flex flex-col w-6/12 ">
@@ -55,10 +63,9 @@ const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
                 name="meetingType"
                 id="meetingType"
                 as="select"
-                label="Select meeting"
                 className={`${inputClass}`}
                 onChange={handleMeetingTypeChange}
-                value={meeting}
+                value={initialValues?.meetingType}
               >
                 {meetingTypesSetter.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -77,7 +84,7 @@ const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
                 name="brothers"
                 placeholder="brothers"
                 className={`${inputClass}`}
-                value={initialValues?.brothers}
+                // value={initialValues?.brothers}
               />
               {errors.brothers && touched.brothers ? (
                 <div className={`${textDanger}`}>{errors.brothers}</div>
@@ -91,7 +98,6 @@ const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
                 name="sisters"
                 placeholder="sisters"
                 className={`${inputClass}`}
-                value={initialValues?.sisters}
               />
               {errors.sisters && touched.sisters ? (
                 <div className={`${textDanger}`}>{errors.sisters}</div>
@@ -106,7 +112,11 @@ const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
                   type="date"
                   className={`${inputClass}`}
                   placeholder="Select date"
-                  value={initialValues?.date}
+                  id="date"
+                  name="date"
+                  // onChange={onChangeDate}
+                  // value={moment(initialValues?.date).format("YYYY-MM-DD")}
+                  // value={value}
                 />
               </div>
             </div>

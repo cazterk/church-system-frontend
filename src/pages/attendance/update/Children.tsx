@@ -10,8 +10,8 @@ const Update = () => {
     date: new Date(),
   };
   const handleSubmit = useCallback((values) => {
-    console.log("values", values);
-    AttendanceService.createChildren(JSON.stringify(values, null, 2));
+    // mutate({ ...values });
+    // resetForm({});
   }, []);
   return (
     <>
