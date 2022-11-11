@@ -1,5 +1,5 @@
 import { Field, Form, Formik } from "formik";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import * as Yup from "yup";
 
 import { IAttendance } from "src/Interfaces/attendance.interface";
@@ -8,6 +8,7 @@ import { getMeeting, meetingTypesSetter } from "src/enums/meeting_types";
 import { Button } from "flowbite-react";
 import { useQuery } from "@tanstack/react-query";
 import moment from "moment";
+import { DatePicker } from "formik-antd";
 
 const titheValidationSchema = Yup.object({
   meetingType: Yup.number().required("Required"),
@@ -23,7 +24,11 @@ interface AttendancePrps {
 }
 const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
   let [meeting, setMeeting] = useState<number>();
-  const [value, setValue] = useState(moment().format("YYYY-MM-DD"));
+  let [date, setDate] = useState<any>(
+    moment(initialValues?.date).format("YYYY-MM-DD")
+  );
+
+  const dateRef = useRef();
   const handleMeetingTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setMeeting(parseInt(e.target.value));
@@ -33,10 +38,16 @@ const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
       console.error(e);
     }
   };
+
   const onChangeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // const newDate = moment(e.target.value).format("YYYY-MM-DD");
-    // e.preventDefault();
-    // initialValues.date = moment(initialValues.date).format("YYYY-MM-DD");
+    e.preventDefault();
+    const newDate = e.target.value;
+    setDate(newDate);
+    try {
+      initialValues.date = newDate;
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   let inputClass =
@@ -108,15 +119,11 @@ const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
               <div className="relative">
                 <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"></div>
                 <label htmlFor="date">Select Date</label>
-                <input
-                  type="date"
-                  className={`${inputClass}`}
-                  placeholder="Select date"
-                  id="date"
+                <DatePicker
                   name="date"
-                  // onChange={onChangeDate}
-                  // value={moment(initialValues?.date).format("YYYY-MM-DD")}
-                  // value={value}
+                  id="date"
+                  placeholder="DatePicker"
+                  className={`${inputClass}`}
                 />
               </div>
             </div>

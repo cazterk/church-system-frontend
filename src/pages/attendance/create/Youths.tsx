@@ -10,7 +10,7 @@ const CreateYouthsAttendance = () => {
     brothers: 0,
     sisters: 0,
     meetingType: 0,
-    date: new Date(),
+    date: new Date().toISOString(),
   };
 
   const { mutate } = useMutation(AttendanceService.createYouths);

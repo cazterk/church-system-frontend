@@ -61,8 +61,8 @@ const createYouths = async (payload) => {
     .post("youths", payload)
     .then((response) => {
       if (response.status === 200) {
-        showEntrySuccessToast(response.status + " redirecting in 5 seconds");
-        setTimeout(() => window.location.replace("/attendance"), 5000);
+        showEntrySuccessToast(response.status + " redirecting son");
+        setTimeout(() => window.location.replace("/attendance"), 2000);
       }
       let payload = response.data;
       return payload;

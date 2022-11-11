@@ -16,7 +16,6 @@ const UpdateYouthsAttendance = () => {
 
   const handleSubmit = useCallback((values, { resetForm }) => {
     mutate({ ...values, id });
-    resetForm({});
   }, []);
   return (
     <>
