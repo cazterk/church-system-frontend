@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import AttendanceService from "src/services/attendance.service";
 import SuspenseLoader from "src/components/SuspenseLoader";
 import { getMeeting } from "src/enums/meeting_types";
-import Pagination from "src/components/pagination";
+import Pagination from "src/components/Pagination";
 import { tableTd, tableTh } from "src/styles/table";
 import { Button } from "flowbite-react";
 
@@ -31,7 +32,7 @@ const AdultsTable = () => {
       </div>
     );
 
-  if (error)
+  if (error instanceof Error)
     return (
       <div className="text-center ">
         {" "}
@@ -71,14 +72,15 @@ const AdultsTable = () => {
                       <td className={`${tableTd}`}>{adults.sisters}</td>
                       <td className={`${tableTd}`}>{adults.date}</td>
                       <td className={`${tableTd}`}>
-                        {" "}
-                        <Button
-                          color="orange"
-                          size="xm"
-                          className="p-1.5 bg-orange-400 text-white"
-                        >
-                          Update
-                        </Button>
+                        <Link to={`/update-adults/${adults.id}`}>
+                          <Button
+                            color="orange"
+                            size="xm"
+                            className="p-1.5 bg-orange-400 text-white"
+                          >
+                            Update
+                          </Button>
+                        </Link>
                       </td>
                     </tr>
                   ))}

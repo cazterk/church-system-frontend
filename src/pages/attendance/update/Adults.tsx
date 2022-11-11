@@ -4,37 +4,20 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 import AttendanceForm from "src/components/forms/AttendanceForm";
 import AttendanceService from "src/services/attendance.service";
-import SuspenseLoader from "src/components/SuspenseLoader";
 
 const UpdateYouthsAttendance = () => {
   const { id } = useParams();
 
-  const { data, error, isLoading } = useQuery({
-    queryKey: ["youths", id],
-    queryFn: AttendanceService.getOneYouthsEntry,
+  const { data } = useQuery({
+    queryKey: ["adults", { id }],
+    queryFn: AttendanceService.getOneAdultsEntry,
   });
-  const { mutate } = useMutation(AttendanceService.updateYouths);
+  const { mutate } = useMutation(AttendanceService.updateAdults);
 
-  const handleSubmit = useCallback((values, { resetForm }) => {
+  const handleSubmit = useCallback((values) => {
     mutate({ ...values, id });
-    resetForm({});
   }, []);
 
-  if (isLoading)
-    return (
-      <div>
-        {" "}
-        <SuspenseLoader />
-      </div>
-    );
-
-  if (error)
-    return (
-      <div className="text-center ">
-        {" "}
-        An error has occurred: {error.message}
-      </div>
-    );
   return (
     <>
       <AttendanceForm

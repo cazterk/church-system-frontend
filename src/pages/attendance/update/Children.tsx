@@ -1,27 +1,31 @@
 import { useCallback } from "react";
+import { useParams } from "react-router-dom";
+import { useMutation, useQuery } from "@tanstack/react-query";
+
 import AttendanceForm from "src/components/forms/AttendanceForm";
 import AttendanceService from "src/services/attendance.service";
 
-const Update = () => {
-  const initialValues = {
-    brothers: 0,
-    sisters: 0,
-    meetingType: null,
-    date: new Date(),
-  };
+const UpdateChildrenAttendance = () => {
+  const { id } = useParams();
+
+  const { data } = useQuery({
+    queryKey: ["children", { id }],
+    queryFn: AttendanceService.getOneChildrenEntry,
+  });
+  const { mutate } = useMutation(AttendanceService.updateChildren);
+
   const handleSubmit = useCallback((values) => {
-    // mutate({ ...values });
-    // resetForm({});
+    mutate({ ...values, id });
   }, []);
   return (
     <>
       <AttendanceForm
-        initialValues={initialValues}
+        initialValues={data}
         submit={handleSubmit}
-        title={`update`}
+        title={`Update`}
       />
     </>
   );
 };
 
-export default Update;
+export default UpdateChildrenAttendance;

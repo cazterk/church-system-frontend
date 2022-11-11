@@ -8,13 +8,13 @@ import AttendanceService from "src/services/attendance.service";
 const UpdateYouthsAttendance = () => {
   const { id } = useParams();
 
-  const { data, error, isLoading, isError } = useQuery({
+  const { data } = useQuery({
     queryKey: ["youths", { id }],
     queryFn: AttendanceService.getOneYouthsEntry,
   });
   const { mutate } = useMutation(AttendanceService.updateYouths);
 
-  const handleSubmit = useCallback((values, { resetForm }) => {
+  const handleSubmit = useCallback((values) => {
     mutate({ ...values, id });
   }, []);
   return (

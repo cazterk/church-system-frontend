@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import TitheService from "src/services/titthe.service";
 import React, { useEffect, useState } from "react";
 import SuspenseLoader from "src/components/SuspenseLoader";
-import Pagination from "../pagination";
+import Pagination from "../Pagination";
 import { getMeeting } from "src/enums/meeting_types";
 import { tableTd, tableTh } from "src/styles/table";
 import { Button } from "flowbite-react";

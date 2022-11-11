@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "flowbite-react";
 import * as BsIcons from "react-icons/bs";
 import { IconContext } from "react-icons";
-import TitheTable from "src/components/tables/titheTable";
+import TitheTable from "src/components/tables/TitheTable";
 
 const Tithe = () => {
   return (

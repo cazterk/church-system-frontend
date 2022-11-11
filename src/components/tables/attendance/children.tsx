@@ -4,9 +4,10 @@ import { useQuery } from "@tanstack/react-query";
 import AttendanceService from "src/services/attendance.service";
 import SuspenseLoader from "src/components/SuspenseLoader";
 import { getMeeting } from "src/enums/meeting_types";
-import Pagination from "src/components/pagination";
+import Pagination from "src/components/Pagination";
 import { tableTd, tableTh } from "src/styles/table";
 import { Button } from "flowbite-react";
+import { Link } from "react-router-dom";
 
 const ChildrenTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,7 +33,7 @@ const ChildrenTable = () => {
       </div>
     );
 
-  if (error)
+  if (error instanceof Error)
     return (
       <div className="text-center ">
         {" "}
@@ -72,14 +73,15 @@ const ChildrenTable = () => {
                       <td className={`${tableTd}`}>{children.sisters}</td>
                       <td className={`${tableTd}`}>{children.date}</td>
                       <td className={`${tableTd}`}>
-                        {" "}
-                        <Button
-                          color="orange"
-                          size="xm"
-                          className="p-1.5 bg-orange-400 text-white"
-                        >
-                          Update
-                        </Button>
+                        <Link to={`/update-children/${children.id}`}>
+                          <Button
+                            color="orange"
+                            size="xm"
+                            className="p-1.5 bg-orange-400 text-white"
+                          >
+                            Update
+                          </Button>
+                        </Link>
                       </td>
                     </tr>
                   ))}

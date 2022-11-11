@@ -1,13 +1,14 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 import { useQuery } from "@tanstack/react-query";
 
 import AttendanceService from "src/services/attendance.service";
 import SuspenseLoader from "src/components/SuspenseLoader";
 import { getMeeting } from "src/enums/meeting_types";
-import Pagination from "src/components/pagination";
+import Pagination from "src/components/Pagination";
 import { tableTd, tableTh } from "src/styles/table";
 import { Button } from "flowbite-react";
-import { Link, useParams } from "react-router-dom";
 
 const YouthsTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,7 +34,7 @@ const YouthsTable = () => {
       </div>
     );
 
-  if (error)
+  if (error instanceof Error)
     return (
       <div className="text-center ">
         {" "}

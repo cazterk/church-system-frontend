@@ -1,7 +1,7 @@
 import { Tab } from "@headlessui/react";
-import ChildrenTable from "src/components/tables/attendance/children";
-import YouthsTable from "src/components/tables/attendance/youths";
-import AdultsTable from "src/components/tables/attendance/adults";
+import ChildrenTable from "src/components/tables/attendance/Children";
+import YouthsTable from "src/components/tables/attendance/Youths";
+import AdultsTable from "src/components/tables/attendance/Adults";
 import { useState } from "react";
 
 function classNames(...classes) {

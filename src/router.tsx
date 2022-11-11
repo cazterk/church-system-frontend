@@ -32,6 +32,12 @@ const CreateAdultsAttendance = Loader(
 const UpdateYouthsAttendance = Loader(
   lazy(() => import("src/pages/attendance/update/Youths"))
 );
+const UpdateChildrenAttendance = Loader(
+  lazy(() => import("src/pages/attendance/update/Children"))
+);
+const UpdateAdultsAttendance = Loader(
+  lazy(() => import("src/pages/attendance/update/Adults"))
+);
 
 const routes: RouteObject[] = [
   {
@@ -70,6 +76,15 @@ const routes: RouteObject[] = [
         path: "/update-youths/:id",
         element: <UpdateYouthsAttendance />,
       },
+      {
+        path: "update-children/:id",
+        element: <UpdateChildrenAttendance />,
+      },
+      {
+        path: "update-adults/:id",
+        element: <UpdateAdultsAttendance />,
+      },
+      {},
     ],
   },
 ];

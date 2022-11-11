@@ -9,7 +9,8 @@ const getAllChildren = async () => {
   });
 };
 
-const getChildren = async (id) => {
+const getOneChildrenEntry = async ({ queryKey }) => {
+  const [_key, { id }] = queryKey;
   return api.get(`children/${id}`).then((response) => {
     let payload = response.data;
     return payload;
@@ -32,11 +33,20 @@ const createChildren = async (children) => {
     });
 };
 
-const updateChildren = async (clientId, payload) => {
-  return api.put(`children/${clientId}/`, payload).then((response) => {
-    let payload = response.data;
-    return payload;
-  });
+const updateChildren = async ({ id, ...payload }) => {
+  return api
+    .put(`children/${id}`, payload)
+    .then((response) => {
+      if (response.status === 200) {
+        showEntrySuccessToast(response.status + " redirecting in 2 soon");
+        setTimeout(() => window.location.replace("/attendance"), 2000);
+      }
+      let payload = response.data;
+      return payload;
+    })
+    .catch((err) => {
+      showErrorToast(err.message);
+    });
 };
 
 // youths ap methods
@@ -49,7 +59,6 @@ const getAllYouths = async () => {
 
 const getOneYouthsEntry = async ({ queryKey }) => {
   const [_key, { id }] = queryKey;
-
   return api.get(`youths/${id}`).then((response) => {
     let payload = response.data;
     return payload;
@@ -61,7 +70,7 @@ const createYouths = async (payload) => {
     .post("youths", payload)
     .then((response) => {
       if (response.status === 200) {
-        showEntrySuccessToast(response.status + " redirecting son");
+        showEntrySuccessToast(response.status + " redirecting soon");
         setTimeout(() => window.location.replace("/attendance"), 2000);
       }
       let payload = response.data;
@@ -77,8 +86,8 @@ const updateYouths = async ({ id, ...payload }) => {
     .put(`youths/${id}`, payload)
     .then((response) => {
       if (response.status === 200) {
-        showEntrySuccessToast(response.status + " redirecting in 5 seconds");
-        setTimeout(() => window.location.replace("/attendance"), 5000);
+        showEntrySuccessToast(response.status + " redirecting in 2 soon");
+        setTimeout(() => window.location.replace("/attendance"), 2000);
       }
       let payload = response.data;
       return payload;
@@ -96,7 +105,8 @@ const getAllAdults = async () => {
   });
 };
 
-const getOneAdultsEntry = async (id: number) => {
+const getOneAdultsEntry = async ({ queryKey }) => {
+  const [_key, { id }] = queryKey;
   return api.get(`adults/${id}`).then((response) => {
     let payload = response.data;
     return payload;
@@ -108,8 +118,8 @@ const createAdults = async (payload) => {
     .post("adults", payload)
     .then((response) => {
       if (response.status === 200) {
-        showEntrySuccessToast(response.status + " redirecting in 5 seconds");
-        setTimeout(() => window.location.replace("/attendance"), 5000);
+        showEntrySuccessToast(response.status + " redirecting in 5 soon");
+        setTimeout(() => window.location.replace("/attendance"), 2000);
       }
       let payload = response.data;
       return payload;
@@ -119,16 +129,25 @@ const createAdults = async (payload) => {
     });
 };
 
-const updateAdults = async (id, payload) => {
-  return api.put(`adults/${id}`, payload).then((response) => {
-    let payload = response.data;
-    return payload;
-  });
+const updateAdults = async ({ id, ...payload }) => {
+  return api
+    .put(`adults/${id}`, payload)
+    .then((response) => {
+      if (response.status === 200) {
+        showEntrySuccessToast(response.status + " redirecting in 5 soon");
+        setTimeout(() => window.location.replace("/attendance"), 2000);
+      }
+      let payload = response.data;
+      return payload;
+    })
+    .catch((err) => {
+      showErrorToast(err.message);
+    });
 };
 
 const AttendanceService = {
   getAllChildren,
-  getChildren,
+  getOneChildrenEntry,
   createChildren,
   updateChildren,
   getAllYouths,
