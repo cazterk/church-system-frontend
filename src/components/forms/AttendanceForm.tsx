@@ -1,14 +1,15 @@
 import { Field, Form, Formik } from "formik";
 import React, { useRef, useState } from "react";
 import * as Yup from "yup";
+import { DatePicker } from "formik-antd";
 
 import { IAttendance } from "src/Interfaces/attendance.interface";
-import AttendanceService from "src/services/attendance.service";
-import { getMeeting, meetingTypesSetter } from "src/enums/meeting_types";
+import { meetingTypesSetter } from "src/enums/meeting_types";
 import { Button } from "flowbite-react";
-import { useQuery } from "@tanstack/react-query";
+
 import moment from "moment";
-import { DatePicker } from "formik-antd";
+import { fieldClass, inputClass } from "src/styles/controls";
+import { textDanger } from "src/styles/text";
 
 const titheValidationSchema = Yup.object({
   meetingType: Yup.number().required("Required"),
@@ -50,11 +51,6 @@ const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
     }
   };
 
-  let inputClass =
-    "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
-  let fieldClass = "mt-4";
-  let textDanger = "text-red-500 font-semibold";
-
   return (
     <div className="flex justify-center w-full ">
       <Formik
@@ -95,7 +91,6 @@ const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
                 name="brothers"
                 placeholder="brothers"
                 className={`${inputClass}`}
-                // value={initialValues?.brothers}
               />
               {errors.brothers && touched.brothers ? (
                 <div className={`${textDanger}`}>{errors.brothers}</div>

@@ -2,8 +2,8 @@ import { useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-import AttendanceForm from "src/components/forms/AttendanceForm";
 import AttendanceService from "src/services/attendance.service";
+import AttendanceForm from "src/components/forms/AttendanceForm";
 
 const UpdateChildrenAttendance = () => {
   const { id } = useParams();
@@ -17,6 +17,7 @@ const UpdateChildrenAttendance = () => {
   const handleSubmit = useCallback((values) => {
     mutate({ ...values, id });
   }, []);
+
   return (
     <>
       <AttendanceForm

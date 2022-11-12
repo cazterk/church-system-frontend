@@ -36,9 +36,9 @@ const YouthsTable = () => {
 
   if (error instanceof Error)
     return (
-      <div className="text-center ">
+      <div className="text-center text-red-500 font-bold ">
         {" "}
-        An error has occurred: {error.message}
+        An error has occurred: {error.message}⚠️
       </div>
     );
   const indexOfLastEntry = currentPage * rowsPerPage;

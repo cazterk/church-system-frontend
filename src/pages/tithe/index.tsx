@@ -20,7 +20,7 @@ const Tithe = () => {
           </i>
         </div>
 
-        <Link to="/tithe-form">
+        <Link to="/create-tithe">
           <Button color="success" size="sm" className="p-1 bg-green-500">
             Tithe
           </Button>

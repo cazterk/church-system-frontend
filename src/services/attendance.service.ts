@@ -22,8 +22,8 @@ const createChildren = async (children) => {
     .post("children", children)
     .then((response) => {
       if (response.status === 200) {
-        showEntrySuccessToast(response.status + " redirecting in 5 seconds");
-        setTimeout(() => window.location.replace("/attendance"), 5000);
+        showEntrySuccessToast(response.status + " redirecting soon.");
+        setTimeout(() => window.location.replace("/attendance"), 2000);
       }
       let payload = response.data;
       return payload;
@@ -38,7 +38,7 @@ const updateChildren = async ({ id, ...payload }) => {
     .put(`children/${id}`, payload)
     .then((response) => {
       if (response.status === 200) {
-        showEntrySuccessToast(response.status + " redirecting in 2 soon");
+        showEntrySuccessToast(response.status + " redirecting in soon.");
         setTimeout(() => window.location.replace("/attendance"), 2000);
       }
       let payload = response.data;
@@ -70,7 +70,7 @@ const createYouths = async (payload) => {
     .post("youths", payload)
     .then((response) => {
       if (response.status === 200) {
-        showEntrySuccessToast(response.status + " redirecting soon");
+        showEntrySuccessToast(response.status + " redirecting soon.");
         setTimeout(() => window.location.replace("/attendance"), 2000);
       }
       let payload = response.data;
@@ -86,7 +86,7 @@ const updateYouths = async ({ id, ...payload }) => {
     .put(`youths/${id}`, payload)
     .then((response) => {
       if (response.status === 200) {
-        showEntrySuccessToast(response.status + " redirecting in 2 soon");
+        showEntrySuccessToast(response.status + " redirecting in 2 soon.");
         setTimeout(() => window.location.replace("/attendance"), 2000);
       }
       let payload = response.data;
@@ -118,7 +118,7 @@ const createAdults = async (payload) => {
     .post("adults", payload)
     .then((response) => {
       if (response.status === 200) {
-        showEntrySuccessToast(response.status + " redirecting in 5 soon");
+        showEntrySuccessToast(response.status + " redirecting in 5 soon.");
         setTimeout(() => window.location.replace("/attendance"), 2000);
       }
       let payload = response.data;
@@ -134,7 +134,7 @@ const updateAdults = async ({ id, ...payload }) => {
     .put(`adults/${id}`, payload)
     .then((response) => {
       if (response.status === 200) {
-        showEntrySuccessToast(response.status + " redirecting in 5 soon");
+        showEntrySuccessToast(response.status + " redirecting in 5 soon.");
         setTimeout(() => window.location.replace("/attendance"), 2000);
       }
       let payload = response.data;

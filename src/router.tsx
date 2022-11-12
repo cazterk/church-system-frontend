@@ -12,9 +12,6 @@ const Loader = (Component: any) => (props: any) =>
 // components
 const Layout = Loader(lazy(() => import("src/container/Layout")));
 
-//forms
-const TitheForm = Loader(lazy(() => import("src/components/forms/TitheForm")));
-
 // pages
 const HomePage = Loader(lazy(() => import("src/pages/home")));
 const AttendancePage = Loader(lazy(() => import("src/pages/attendance")));
@@ -28,6 +25,7 @@ const CreateYouthsAttendance = Loader(
 const CreateAdultsAttendance = Loader(
   lazy(() => import("src/pages/attendance/create/Adults"))
 );
+const CreateTithe = Loader(lazy(() => import("src/pages/tithe/create/")));
 
 const UpdateYouthsAttendance = Loader(
   lazy(() => import("src/pages/attendance/update/Youths"))
@@ -38,6 +36,7 @@ const UpdateChildrenAttendance = Loader(
 const UpdateAdultsAttendance = Loader(
   lazy(() => import("src/pages/attendance/update/Adults"))
 );
+const UpdateTithe = Loader(lazy(() => import("src/pages/tithe/update")));
 
 const routes: RouteObject[] = [
   {
@@ -56,10 +55,7 @@ const routes: RouteObject[] = [
         path: "/tithe",
         element: <TithePage />,
       },
-      {
-        path: "/tithe-form",
-        element: <TitheForm />,
-      },
+
       {
         path: "/create-children",
         element: <CreateChildrenAttendance />,
@@ -73,6 +69,10 @@ const routes: RouteObject[] = [
         element: <CreateAdultsAttendance />,
       },
       {
+        path: "/create-tithe",
+        element: <CreateTithe />,
+      },
+      {
         path: "/update-youths/:id",
         element: <UpdateYouthsAttendance />,
       },
@@ -84,7 +84,10 @@ const routes: RouteObject[] = [
         path: "update-adults/:id",
         element: <UpdateAdultsAttendance />,
       },
-      {},
+      {
+        path: "update-tithe/:id",
+        element: <UpdateTithe />,
+      },
     ],
   },
 ];

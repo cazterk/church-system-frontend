@@ -1,32 +1,32 @@
 import { useCallback } from "react";
 import { useMutation } from "@tanstack/react-query";
 
-import AttendanceService from "src/services/attendance.service";
-import AttendanceForm from "src/components/forms/AttendanceForm";
+import TitheService from "src/services/titthe.service";
+import TitheForm from "src/components/forms/TitheForm";
 
-const CreateChildrenAttendance = () => {
+const CreateTithe = () => {
   const initialValues = {
-    brothers: 0,
-    sisters: 0,
     meetingType: null,
+    collectedAmount: 0,
     date: new Date().toISOString(),
   };
 
-  const { mutate } = useMutation(AttendanceService.createChildren);
+  const { mutate } = useMutation(TitheService.createTithe);
 
   const handleSubmit = useCallback((values, { resetForm }) => {
     mutate({ ...values });
     resetForm({});
   }, []);
+
   return (
     <>
-      <AttendanceForm
+      <TitheForm
         initialValues={initialValues}
         submit={handleSubmit}
-        title={`Children`}
+        title={`Tithe`}
       />
     </>
   );
 };
 
-export default CreateChildrenAttendance;
+export default CreateTithe;

@@ -1,11 +1,13 @@
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
+import { Button } from "flowbite-react";
+
 import TitheService from "src/services/titthe.service";
-import React, { useEffect, useState } from "react";
 import SuspenseLoader from "src/components/SuspenseLoader";
 import Pagination from "../Pagination";
 import { getMeeting } from "src/enums/meeting_types";
 import { tableTd, tableTh } from "src/styles/table";
-import { Button } from "flowbite-react";
 
 const TitheTable = () => {
   const [page, setPage] = useState(0);
@@ -33,11 +35,11 @@ const TitheTable = () => {
         <SuspenseLoader />
       </div>
     );
-  if (error)
+  if (error instanceof Error)
     return (
-      <div className="text-center ">
+      <div className="text-center text-red-500 font-bold ">
         {" "}
-        An error has occurred: {error.message}
+        An error has occurred: {error.message}⚠️
       </div>
     );
 
@@ -73,13 +75,15 @@ const TitheTable = () => {
                       <td className={`${tableTd}`}>{tithe.date}</td>
                       <td className={`${tableTd}`}>
                         {" "}
-                        <Button
-                          color="orange"
-                          size="xm"
-                          className="p-1.5 bg-orange-400 text-white"
-                        >
-                          Update
-                        </Button>
+                        <Link to={`/update-tithe/${tithe.id}`}>
+                          <Button
+                            color="orange"
+                            size="xm"
+                            className="p-1.5 bg-orange-400 text-white"
+                          >
+                            Update
+                          </Button>
+                        </Link>
                       </td>
                     </tr>
                   ))}

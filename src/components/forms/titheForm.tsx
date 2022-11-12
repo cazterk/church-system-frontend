@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
+import { DatePicker } from "formik-antd";
 
 import { ITithe } from "src/Interfaces/tithe.interface";
 import { meetingTypesSetter } from "src/enums/meeting_types";
 import { Button } from "flowbite-react";
-import TitheService from "src/services/titthe.service";
+import { fieldClass, inputClass } from "src/styles/controls";
+import { textDanger } from "src/styles/text";
 
 const titheValidationSchema = Yup.object({
   meetingType: Yup.number().required("Required"),
@@ -13,12 +15,12 @@ const titheValidationSchema = Yup.object({
   date: Yup.date().required("Required"),
 });
 
-const TitheForm: React.FC<{}> = () => {
-  const initialValues: ITithe = {
-    meetingType: null,
-    collectedAmount: 0,
-    date: new Date(),
-  };
+interface TitheProps {
+  initialValues: ITithe;
+  submit: any;
+  title: string;
+}
+const TitheForm = ({ initialValues, submit, title }: TitheProps) => {
   let [meeting, setMeeting] = useState<number>();
 
   const handleMeetingTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,24 +33,18 @@ const TitheForm: React.FC<{}> = () => {
     }
   };
 
-  let inputClass =
-    "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
-  let fieldClass = "mt-4";
-  let textDanger = "text-red-500 font-semibold";
-
   return (
     <div className="flex justify-center w-full ">
       <Formik
         initialValues={initialValues}
         validationSchema={titheValidationSchema}
-        onSubmit={(values, { resetForm }) => {
-          console.log({ values });
-          TitheService.createTithe(JSON.stringify(values, null, 2));
-          resetForm({});
-        }}
+        onSubmit={submit}
+        enableReinitialize
       >
         {({ errors, touched }) => (
           <Form className="flex flex-col w-6/12 ">
+            <h2 className="text-center font-bold">{title} Entry</h2>
+
             <div className={`${fieldClass}`}>
               <label htmlFor="meetingType">Select Meeting Type</label>
               <Field
@@ -59,7 +55,7 @@ const TitheForm: React.FC<{}> = () => {
                 placeholder="select meeting"
                 className={`${inputClass}`}
                 onChange={handleMeetingTypeChange}
-                value={meeting}
+                value={initialValues?.meetingType}
               >
                 {meetingTypesSetter.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -87,10 +83,11 @@ const TitheForm: React.FC<{}> = () => {
               <div className="relative">
                 <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"></div>
                 <label htmlFor="firstName">Select Date</label>
-                <input
-                  type="date"
+                <DatePicker
+                  name="date"
+                  id="date"
+                  placeholder="DatePicker"
                   className={`${inputClass}`}
-                  placeholder="Select date"
                 />
               </div>
             </div>
