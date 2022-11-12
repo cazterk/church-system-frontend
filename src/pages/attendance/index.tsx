@@ -21,17 +21,29 @@ const Attendance = () => {
         </div>
 
         <Link to="/create-children">
-          <Button color="success" size="sm" className="p-1 bg-green-500">
+          <Button
+            color="success"
+            size="sm"
+            className="p-1 bg-green-500 rounded"
+          >
             Children
           </Button>
         </Link>
         <Link to="/create-youths">
-          <Button color="success" size="sm" className="p-1 mx-1 bg-green-500">
+          <Button
+            color="success"
+            size="sm"
+            className="p-1 mx-1 bg-green-500 rounded"
+          >
             Youths
           </Button>
         </Link>
         <Link to="/create-adults">
-          <Button color="success" size="sm" className="p-1 bg-green-500">
+          <Button
+            color="success"
+            size="sm"
+            className="p-1 bg-green-500 rounded"
+          >
             Adults
           </Button>
         </Link>

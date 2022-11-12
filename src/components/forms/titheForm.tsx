@@ -94,7 +94,7 @@ const TitheForm = ({ initialValues, submit, title }: TitheProps) => {
             <div className="flex flex-wrap justify-center my-8 items-center gap-2">
               <Button
                 type="submit"
-                className="p-2 text-center text-white w-64 bg-blue-500"
+                className="p-1 text-center text-white w-64 bg-blue-500 rounded"
               >
                 Submit
               </Button>

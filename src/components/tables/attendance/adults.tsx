@@ -76,7 +76,7 @@ const AdultsTable = () => {
                           <Button
                             color="orange"
                             size="xm"
-                            className="p-1.5 bg-orange-400 text-white"
+                            className="p-1.5 bg-orange-400 text-white rounded"
                           >
                             Update
                           </Button>

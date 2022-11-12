@@ -24,7 +24,7 @@ const CreateYouthsAttendance = () => {
       <AttendanceForm
         initialValues={initialValues}
         submit={handleSubmit}
-        title={`Youths`}
+        title={`Create Youths`}
       />
     </>
   );

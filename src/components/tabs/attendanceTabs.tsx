@@ -17,13 +17,13 @@ const AttendanceTabs = () => {
   return (
     <div className=" flex flex-col  justify-center  w-full ">
       <Tab.Group>
-        <Tab.List className=" flex space-x-1 rounded-xl bg-blue-300/20 p-1">
+        <Tab.List className=" flex space-x-1 rounded bg-blue-300/20 p-1">
           {Object.keys(categories).map((category, index) => (
             <Tab
               key={index}
               className={({ selected }) =>
                 classNames(
-                  "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-black",
+                  "w-full rounded py-2.5 text-sm font-medium leading-5 text-black",
                   "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-200 focus:outline-none focus:ring-2",
                   selected
                     ? "bg-white shadow"

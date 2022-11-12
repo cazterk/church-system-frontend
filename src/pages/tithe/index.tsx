@@ -21,7 +21,11 @@ const Tithe = () => {
         </div>
 
         <Link to="/create-tithe">
-          <Button color="success" size="sm" className="p-1 bg-green-500">
+          <Button
+            color="success"
+            size="sm"
+            className="p-1 bg-green-500 rounded"
+          >
             Tithe
           </Button>
         </Link>

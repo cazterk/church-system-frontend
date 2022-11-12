@@ -10,6 +10,10 @@ const meetingTypes = {
 
 export const meetingTypesSetter = [
   {
+    value: "",
+    label: "----------",
+  },
+  {
     value: 1,
     label: "Sunday Worship Service",
   },

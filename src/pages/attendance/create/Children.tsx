@@ -23,7 +23,7 @@ const CreateChildrenAttendance = () => {
       <AttendanceForm
         initialValues={initialValues}
         submit={handleSubmit}
-        title={`Children`}
+        title={`Create Children`}
       />
     </>
   );

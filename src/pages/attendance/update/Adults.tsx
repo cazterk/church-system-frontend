@@ -23,7 +23,7 @@ const UpdateYouthsAttendance = () => {
       <AttendanceForm
         initialValues={data}
         submit={handleSubmit}
-        title={`Youths`}
+        title={`Update This Adults`}
       />
     </>
   );

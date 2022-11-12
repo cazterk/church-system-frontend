@@ -9,7 +9,7 @@ const CreateAdultsAttendance = () => {
     brothers: 0,
     sisters: 0,
     meetingType: null,
-    date: new Date(),
+    date: new Date().toISOString(),
   };
 
   const { mutate } = useMutation(AttendanceService.createAdults);
@@ -23,7 +23,7 @@ const CreateAdultsAttendance = () => {
       <AttendanceForm
         initialValues={initialValues}
         submit={handleSubmit}
-        title={`Adults`}
+        title={`Create Adults`}
       />
     </>
   );
