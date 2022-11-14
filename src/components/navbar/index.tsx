@@ -12,7 +12,7 @@ const NavBar = () => {
               <IconContext.Provider value={{ size: "30" }}>
                 <Link
                   to={item.path}
-                  className="flex items-center text-base text-black font-semibold h-full rounded hover:bg-gray-100 hover:w-full p-4"
+                  className="flex items-center text-base text-black font-semibold h-full rounded-md hover:bg-gray-100 hover:w-full p-4"
                 >
                   {item.icon}
                   <span className="w-full ml-4">{item.title}</span>

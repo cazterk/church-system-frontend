@@ -110,7 +110,7 @@ const AttendanceForm = ({ initialValues, submit, title }: AttendancePrps) => {
             <div className="flex flex-wrap justify-center my-8 items-center gap-2">
               <Button
                 type="submit"
-                className="p-1 text-center text-white w-64 bg-blue-500 rounded"
+                className="p-1 text-center text-white w-64 bg-blue-500 rounded-md"
               >
                 Submit
               </Button>

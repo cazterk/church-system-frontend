@@ -77,7 +77,7 @@ const YouthsTable = () => {
                           <Button
                             color="orange"
                             size="xm"
-                            className="p-1.5 bg-orange-400 text-white rounded"
+                            className="p-1.5 bg-orange-400 text-white rounded-md"
                           >
                             Update
                           </Button>

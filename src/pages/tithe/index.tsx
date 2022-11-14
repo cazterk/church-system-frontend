@@ -24,7 +24,7 @@ const Tithe = () => {
           <Button
             color="success"
             size="sm"
-            className="p-1 bg-green-500 rounded"
+            className="p-1 bg-green-500 rounded-md"
           >
             Tithe
           </Button>

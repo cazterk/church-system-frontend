@@ -8,6 +8,7 @@ import SuspenseLoader from "src/components/SuspenseLoader";
 import Pagination from "../Pagination";
 import { getMeeting } from "src/enums/meeting_types";
 import { tableTd, tableTh } from "src/styles/table";
+import { spliceDate } from "src/utils/functions";
 
 const TitheTable = () => {
   const [page, setPage] = useState(0);
@@ -72,14 +73,14 @@ const TitheTable = () => {
                         {getMeeting(tithe.meetingType)}
                       </td>
                       <td className={`${tableTd}`}>{tithe.collectedAmount}</td>
-                      <td className={`${tableTd}`}>{tithe.date}</td>
+                      <td className={`${tableTd}`}>{spliceDate(tithe.date)}</td>
                       <td className={`${tableTd}`}>
                         {" "}
                         <Link to={`/update-tithe/${tithe.id}`}>
                           <Button
                             color="orange"
                             size="xm"
-                            className="p-1.5 bg-orange-400 text-white rounded"
+                            className="p-1.5 bg-orange-400 text-white rounded-md"
                           >
                             Update
                           </Button>

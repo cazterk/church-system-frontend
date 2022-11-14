@@ -24,7 +24,7 @@ const Attendance = () => {
           <Button
             color="success"
             size="sm"
-            className="p-1 bg-green-500 rounded"
+            className="p-1 bg-green-500 rounded-md"
           >
             Children
           </Button>
@@ -33,7 +33,7 @@ const Attendance = () => {
           <Button
             color="success"
             size="sm"
-            className="p-1 mx-1 bg-green-500 rounded"
+            className="p-1 mx-1 bg-green-500 rounded-md"
           >
             Youths
           </Button>
@@ -42,7 +42,7 @@ const Attendance = () => {
           <Button
             color="success"
             size="sm"
-            className="p-1 bg-green-500 rounded"
+            className="p-1 bg-green-500 rounded-md"
           >
             Adults
           </Button>
