@@ -13,6 +13,7 @@ const Loader = (Component: any) => (props: any) =>
 const Layout = Loader(lazy(() => import("src/container/Layout")));
 
 // pages
+const LoginPage = Loader(lazy(() => import("src/container/Login")));
 const HomePage = Loader(lazy(() => import("src/pages/home")));
 const AttendancePage = Loader(lazy(() => import("src/pages/attendance")));
 const TithePage = Loader(lazy(() => import("src/pages/tithe")));
@@ -41,10 +42,15 @@ const UpdateTithe = Loader(lazy(() => import("src/pages/tithe/update")));
 const routes: RouteObject[] = [
   {
     path: "",
+    element: <LoginPage />,
+  },
+
+  {
+    path: "",
     element: <Layout />,
     children: [
       {
-        path: "",
+        path: "home",
         element: <HomePage />,
       },
       {

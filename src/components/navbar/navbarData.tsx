@@ -5,7 +5,7 @@ import * as FcIcons from "react-icons/fc";
 export const NavbarData = [
   {
     title: "Home",
-    path: "",
+    path: "/home",
     icon: <AiIcons.AiFillHome />,
   },
 
