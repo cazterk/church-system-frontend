@@ -1,10 +1,13 @@
+import { Avatar } from "flowbite-react";
 import { IconContext } from "react-icons";
 import { Link } from "react-router-dom";
 import { NavbarData } from "../../components/navbar/navbarData";
+import AvatarTooltip from "../tooltips/AvatarTooltip";
 
 const NavBar = () => {
   return (
-    <div className="w-full shadow-md ">
+    <div className="w-full shadow-md flex justify-between px-8 ">
+      <i className="flex items-center">logo</i>
       <div className=" sider-menu flex justify-center px-5">
         {NavbarData.map((item, index) => {
           return (
@@ -22,6 +25,7 @@ const NavBar = () => {
           );
         })}
       </div>
+      <AvatarTooltip />
     </div>
   );
 };

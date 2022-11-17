@@ -15,6 +15,7 @@ const login = ({ userName, password }) => {
         if (res.data.token) {
           localStorage.setItem("user", JSON.stringify(res.data));
           localStorage.setItem("token", JSON.stringify(res.data.token));
+          setTimeout(() => window.location.replace("/home"), 1000);
         } else {
           console.log("incorrect credentials");
         }
@@ -30,12 +31,13 @@ const login = ({ userName, password }) => {
 const logout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
+  window.location.replace("");
 };
 
 // Decodes a token from base64
 const parseJwtToken = (token) => {
   try {
-    return JSON.parse(atob(token.split(" ")[1]));
+    return JSON.parse(window.atob(token.split(".")[1]));
   } catch (err) {
     return null;
   }
@@ -51,11 +53,12 @@ const getRawToken = () => {
 
 const getCurrentToken = () => {
   let user = getCurrentUser();
+
   // Check if user is authenticated
   if (user) {
     let token = JSON.parse(localStorage.getItem("token"));
     const decodedJwt = parseJwtToken(token);
-    if (decodedJwt * 1000 < Date.now()) {
+    if (decodedJwt.exp * 1000 < Date.now()) {
       logout();
     }
     return token;

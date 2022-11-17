@@ -41,7 +41,7 @@ const UpdateAdultsAttendance = Loader(
 const UpdateTithe = Loader(lazy(() => import("src/pages/tithe/update")));
 
 let isAuthenticated = null;
-const token = AuthService.getRawToken();
+const token = AuthService.getCurrentToken();
 isAuthenticated = token !== "expired";
 
 const routes: RouteObject[] = [
