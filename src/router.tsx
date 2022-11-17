@@ -1,6 +1,7 @@
 import { Suspense, lazy, ReactComponentElement } from "react";
-import type { RouteObject } from "react-router-dom";
+import { Navigate, RouteObject } from "react-router-dom";
 import SuspenseLoader from "src/components/SuspenseLoader";
+import AuthService from "src/services/auth.service";
 
 const Loader = (Component: any) => (props: any) =>
   (
@@ -39,15 +40,19 @@ const UpdateAdultsAttendance = Loader(
 );
 const UpdateTithe = Loader(lazy(() => import("src/pages/tithe/update")));
 
+let isAuthenticated = null;
+const token = AuthService.getRawToken();
+isAuthenticated = token !== "expired";
+
 const routes: RouteObject[] = [
   {
     path: "",
-    element: <LoginPage />,
+    element: !isAuthenticated ? <LoginPage /> : <Navigate to="home" />,
   },
 
   {
     path: "",
-    element: <Layout />,
+    element: isAuthenticated ? <Layout /> : <LoginPage />,
     children: [
       {
         path: "home",

@@ -11,3 +11,15 @@ export const showErrorToast = (message) => {
     transition: Slide,
   });
 };
+
+export const showLoginSuccessToast = (message) => {
+  toast.success(`Login was successful. \n ${message}.`, {
+    transition: Slide,
+  });
+};
+
+export const showLoginErrorToast = (message) => {
+  toast.error(`Login was not successful. \n ${message}.`, {
+    transition: Slide,
+  });
+};
