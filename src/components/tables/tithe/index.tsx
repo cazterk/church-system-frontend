@@ -11,30 +11,27 @@ import { Button, Table } from "flowbite-react";
 import * as BiIcons from "react-icons/bi";
 
 import { getMeeting } from "src/enums/meeting_types";
-import { IAttendance } from "src/Interfaces/attendance.interface";
 import { spliceDate } from "src/utils/functions";
+import { ITithe } from "src/Interfaces/tithe.interface";
 
 interface Props {
-  data: IAttendance[];
+  data: ITithe[];
   url: string;
 }
 
-const columHelper = createColumnHelper<IAttendance>();
+const columHelper = createColumnHelper<ITithe>();
 
-const AttendanceTable = ({ data, url }: Props) => {
+const TableData = ({ data, url }: Props) => {
   const columns = [
     columHelper.accessor("meetingType", {
       cell: (info) => <>{getMeeting(info.getValue())}</>,
       header: () => "Meeting ",
     }),
-    columHelper.accessor("brothers", {
+    columHelper.accessor("collectedAmount", {
       cell: (info) => info.getValue(),
-      header: () => "Brothers",
+      header: () => "Collected Amount",
     }),
-    columHelper.accessor("sisters", {
-      cell: (info) => info.getValue(),
-      header: () => "Sisters",
-    }),
+
     columHelper.accessor("date", {
       cell: (info) => <>{spliceDate(info.getValue())}</>,
       header: () => "Date",
@@ -131,14 +128,14 @@ const AttendanceTable = ({ data, url }: Props) => {
             <BiIcons.BiChevronsRight className="h-6 w-6" />
           </Button>
 
-          <span className="flex items-center gap-1 mx-2">
+          <span className="flex items-center gap-1">
             <div>Page</div>
             <strong>
               {table.getState().pagination.pageIndex + 1} of{" "}
               {table.getPageCount()}
             </strong>
           </span>
-          <span className="flex items-center gap-1 mx-2">
+          <span className="flex items-center gap-1">
             | Go to page:
             <input
               type="number"
@@ -168,4 +165,4 @@ const AttendanceTable = ({ data, url }: Props) => {
   );
 };
 
-export default AttendanceTable;
+export default TableData;

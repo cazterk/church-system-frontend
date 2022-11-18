@@ -1,15 +1,13 @@
-import { useState } from "react";
-
 import { useQuery } from "@tanstack/react-query";
 
-import AttendanceService from "src/services/attendance.service";
 import SuspenseLoader from "src/components/SuspenseLoader";
-import AttendanceTable from ".";
+import TableData from "src/components/tables/tithe";
+import TitheService from "src/services/titthe.service";
 
-const YouthsTable = () => {
+const TitheTable = () => {
   const { isLoading, error, data } = useQuery({
-    queryKey: ["youths"],
-    queryFn: AttendanceService.getAllYouths,
+    queryKey: ["tithe"],
+    queryFn: TitheService.getAllTithe,
   });
 
   if (isLoading)
@@ -30,9 +28,8 @@ const YouthsTable = () => {
 
   return (
     <>
-      <AttendanceTable data={data} url="update-youths" />
+      <TableData data={data} url="update-tithe" />
     </>
   );
 };
-
-export default YouthsTable;
+export default TitheTable;

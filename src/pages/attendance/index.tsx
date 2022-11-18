@@ -6,7 +6,7 @@ import AttendanceTabs from "src/components/tabs/attendanceTabs";
 
 const Attendance = () => {
   return (
-    <div className=" w-4/6">
+    <div className=" w-9/12">
       <h1 className="text-center py-5">This is the attendance page</h1>
       <div className="flex justify-end my-2">
         <div className="flex items-center mr-2">
