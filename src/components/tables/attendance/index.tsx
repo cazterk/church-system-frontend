@@ -70,7 +70,7 @@ const AttendanceTable = ({ data, url }: Props) => {
             key={headerGroup.id}
           >
             {headerGroup.headers.map((header) => (
-              <Table.HeadCell key={header.id}>
+              <Table.HeadCell key={header.id} className="capitalize text-base">
                 {header.isPlaceholder
                   ? null
                   : flexRender(
@@ -101,7 +101,7 @@ const AttendanceTable = ({ data, url }: Props) => {
         </Table.Body>
       </Table>
       <div>
-        <div className="flex justify-center my-5">
+        <div className="flex justify-center my-5 items-center">
           <Button
             pill={true}
             onClick={() => table.setPageIndex(0)}
@@ -147,7 +147,7 @@ const AttendanceTable = ({ data, url }: Props) => {
                 const page = e.target.value ? Number(e.target.value) - 1 : 0;
                 table.setPageIndex(page);
               }}
-              className="border p-1 rounded w-16"
+              className="border p-1 rounded w-16 h-9"
             />
           </span>
           <select
@@ -155,8 +155,9 @@ const AttendanceTable = ({ data, url }: Props) => {
             onChange={(e) => {
               table.setPageSize(Number(e.target.value));
             }}
+            className="border p-1 rounded w-24 h-9"
           >
-            {[10, 20, 30, 40, 50].map((pageSize) => (
+            {[5, 10, 20, 30, 40, 50].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
                 Show {pageSize}
               </option>
