@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "flowbite-react";
 import * as BsIcons from "react-icons/bs";
 import { IconContext } from "react-icons";
-import AttendanceTabs from "src/components/tabs/attendanceTabs";
+import AttendanceTabs from "src/components/tabs/AttendanceTabs";
 
 const Attendance = () => {
   return (

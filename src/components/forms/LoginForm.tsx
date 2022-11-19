@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import { passwordInput } from "src/styles/controls";
 import { ILogin } from "src/Interfaces/login.interface";
 import { textDanger } from "src/styles/text";
+import { useState } from "react";
+import { Spinner } from "flowbite-react";
 
 const submitBtn =
   "inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full";
@@ -13,13 +15,15 @@ const LoginValidationSchema = Yup.object({
   password: Yup.string().required("Required"),
 });
 
-interface AttendancePrps {
-  initialValues: ILogin;
-  submit: any;
-  title?: string;
-}
-
 const LoginForm = ({ initialValues, submit }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const loadingState = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  };
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="md:w-8/12 lg:w-1/4 lg:ml-20">
@@ -68,8 +72,15 @@ const LoginForm = ({ initialValues, submit }) => {
                 className={`${submitBtn}`}
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
+                onClick={loadingState}
               >
-                Sign in
+                {isLoading ? (
+                  <>
+                    <Spinner size="sm" light={true} /> Loading ...
+                  </>
+                ) : (
+                  "Sign in"
+                )}
               </button>
               {/* </Link> */}
             </Form>
