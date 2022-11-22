@@ -2,7 +2,6 @@ import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
 import { passwordInput } from "src/styles/controls";
-import { ILogin } from "src/Interfaces/login.interface";
 import { textDanger } from "src/styles/text";
 import { useState } from "react";
 import { Spinner } from "flowbite-react";
