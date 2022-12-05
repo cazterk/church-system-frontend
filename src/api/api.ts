@@ -1,8 +1,8 @@
 import axios from "axios";
-import authHeader from "src/services/auth-header";
 
+const url = import.meta.env.VITE_API_URL;
 export const api = axios.create({
-  baseURL: "http://localhost:5000/api/",
+  baseURL: url,
   headers: {
     "Content-Type": "application/json",
     Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,

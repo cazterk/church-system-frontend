@@ -16,11 +16,8 @@ const login = ({ userName, password }) => {
           localStorage.setItem("user", JSON.stringify(res.data));
           localStorage.setItem("token", JSON.stringify(res.data.token));
           setTimeout(() => window.location.replace("/home"), 1000);
-        } else {
-          console.log("incorrect credentials");
         }
       }
-      console.log("1st token check :", res.data.token);
       return res.data;
     })
     .catch((err) => {

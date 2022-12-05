@@ -1,4 +1,4 @@
-import { Suspense, lazy, ReactComponentElement } from "react";
+import { Suspense, lazy } from "react";
 import { Navigate, RouteObject } from "react-router-dom";
 import SuspenseLoader from "src/components/SuspenseLoader";
 import AuthService from "src/services/auth.service";

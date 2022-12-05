@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { useMutation } from "@tanstack/react-query";
 import AuthService from "src/services/auth.service";
 import LoginForm from "src/components/forms/LoginForm";
@@ -10,9 +10,7 @@ const Login = () => {
     mutate({ ...values });
   }, []);
 
-  useEffect(() => {
-    console.log("user :", AuthService.getCurrentUser());
-  }, []);
+ 
 
   return (
     <>
