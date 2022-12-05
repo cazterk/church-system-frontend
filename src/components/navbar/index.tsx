@@ -1,7 +1,7 @@
 import { Avatar } from "flowbite-react";
 import { IconContext } from "react-icons";
 import { Link } from "react-router-dom";
-import { NavbarData } from "../../components/navbar/navbarData";
+import { NavbarData } from "./NavbarData";
 import AvatarTooltip from "../tooltips/AvatarTooltip";
 
 const NavBar = () => {

@@ -6,7 +6,7 @@ import TitheForm from "src/components/forms/TitheForm";
 
 const CreateTithe = () => {
   const initialValues = {
-    meetingType: null,
+    meetingType: 0,
     collectedAmount: 0,
     date: new Date().toISOString(),
   };

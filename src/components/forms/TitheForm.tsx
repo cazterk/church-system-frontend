@@ -10,7 +10,7 @@ import { fieldClass, inputClass } from "src/styles/controls";
 import { textDanger } from "src/styles/text";
 
 const titheValidationSchema = Yup.object({
-  meetingType: Yup.number().required("Required"),
+  meetingType: Yup.number().required("Required").min(1),
   collectedAmount: Yup.number().required(),
   date: Yup.date().required("Required"),
 });

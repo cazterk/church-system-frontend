@@ -8,7 +8,7 @@ const CreateAdultsAttendance = () => {
   const initialValues = {
     brothers: 0,
     sisters: 0,
-    meetingType: null,
+    meetingType: 0,
     date: new Date().toISOString(),
   };
 
